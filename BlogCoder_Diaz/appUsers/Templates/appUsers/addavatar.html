@@ -1,0 +1,30 @@
+{% extends 'appBlog/base.html' %}
+
+{% block title %} Mi perfil {% endblock title %}
+
+{% block main_content %}
+
+{% include 'appBlog/Components/header.html' %}
+
+<div class="container mt-5">
+
+    <form  method="post" class="form-group mb-5" style="text-align: justify" enctype="multipart/form-data">
+
+        {% csrf_token %}
+
+        <table class="table">
+
+        {{miAvatar.as_p}}
+
+        </table>
+        <p></p>
+        <input type="submit" value="Guardar cambios" class="btn btn-primary">
+        <a class="btn btn-primary" href="{% url 'inicio' %}">Cancelar</a>
+
+    </form>
+</div>
+
+
+
+{% endblock main_content %}
+    

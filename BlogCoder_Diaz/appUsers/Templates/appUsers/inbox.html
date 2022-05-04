@@ -1,0 +1,30 @@
+{% extends 'appBlog/base.html' %}
+
+
+{% block main_content %}
+
+<br></br>
+<div class="container-fluid mb-5">
+    <div class="row" style="width: 13%;">        
+        <div class="col">        
+            <div class="card bg-light mb-3">
+                <div class="card-body">
+                    <div class="d-flex mb-4">
+                        <div class="ms-3">
+                            <div class="list-group list-group-flush">
+
+                                {% for chat in listchats %}
+
+                                    <a class="list-group-item list-group-item-action list-group-item-light p-3" href="{% url 'Chat' chat %}"><strong>{{chat}}</strong></a>
+
+                                {%endfor%}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock main_content%}

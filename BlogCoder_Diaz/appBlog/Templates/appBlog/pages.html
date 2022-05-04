@@ -1,0 +1,45 @@
+{% extends 'appBlog/base.html' %}
+
+{% load static %}
+
+
+{% block main_content %}        
+      <!-- Page content-->
+      {% include 'appBlog/Components/header.html' %}
+  
+                        <div class="container-fluid mb-3">
+                            <div class="container">
+                                <div class="row">
+                                    <div class="container-fluid">
+                                        <div class="container text-left">
+                                            <a class="btn btn-primary" href="{% url 'New Post' %}">¿Qué quieres compartir?</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        
+                    {% for post in postlist %}
+                        <div class="container">
+                            <div class="row">
+                                <!-- Blog entries-->
+                                <div class="col-lg-8">
+                                    <!-- Featured blog post-->
+                                    <div class="card mb-4">
+                                        <a href="{% url 'post' post.titulo %}"><img class="card-img-top" src="{{post.imagen.url}}" alt="..." /></a>
+                                        <div class="card-body">
+                                            <div class="small text-muted">{{post.fecha}}</div>
+                                            <h2 class="card-title">{{post.titulo}}</h2>
+                                            <p class="card-text">{{post.autor}}</p>
+                                            <a class="btn btn-primary" href="{% url 'post' post.titulo %}">Leer →</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+
+
+{% endblock main_content %}
+

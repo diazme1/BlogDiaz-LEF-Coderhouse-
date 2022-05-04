@@ -1,0 +1,42 @@
+{% extends 'appBlog/base.html' %}
+
+
+
+    {% block title %} Editar Post {% endblock title %}
+
+    {% block main_content %}
+    
+    
+    <div class="container mt-5">
+
+        <form action="/post/update/{{post_titulo}}/" method="POST" class="form-group" enctype="multipart/form-data"> {% csrf_token %}
+    
+            <table class="table">
+        
+            {{formulario.as_table}}
+        
+            </table>
+    
+            {% if errors %}
+                {% for error in errors %}
+                    <div class="container mt-1 style= text-red">{{error}}</div>
+                {% endfor %}
+            {% endif %}
+
+
+            <input type="submit", value="Editar Post", class="btn btn-primary">
+    
+        </div>    
+    
+        </form>
+    
+    
+    
+    
+    
+    {% endblock main_content %}
+
+
+
+
+

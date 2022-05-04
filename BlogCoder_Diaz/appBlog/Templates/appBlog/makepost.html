@@ -1,0 +1,40 @@
+{% extends 'appBlog/base.html' %}
+
+{% block title %} Nuevo Post {% endblock title %}
+
+{% block main_content %}
+<div class="container mt-5">
+
+    <form action="" method="POST" class="form-group" enctype="multipart/form-data"> {% csrf_token %}
+
+        <table class="table">
+    
+        {{miPost.as_table}}
+    
+        </table>
+
+        <input type="submit", value="Subir Post", class="btn btn-primary">
+
+        <p></p>
+
+    </div>    
+
+    </form>
+
+
+
+{% endblock main_content %}
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+

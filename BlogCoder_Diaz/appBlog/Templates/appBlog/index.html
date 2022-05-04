@@ -1,0 +1,26 @@
+{% extends 'appBlog/base.html' %}
+
+{% load static %}
+
+
+{% block main_content %}        
+      <!-- Page content-->
+      {% include 'appBlog/Components/header.html' %}
+  
+        <div class="container-fluid mb-3">
+            <div class="container">
+                <div class="row">
+                    <div class="container-fluid">
+                        <div class="container text-center">
+                            <a class="btn btn-primary" href="{% url 'pages' %}" style="position:center;">Ingresar al blog-></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+                
+
+
+{% endblock main_content %}
+

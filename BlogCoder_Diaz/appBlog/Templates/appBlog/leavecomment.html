@@ -1,0 +1,24 @@
+{% extends 'appBlog/base.html' %}
+
+{% block title %} Foro {% endblock title %}
+
+{% block main_content %}
+<div class="container mt-5">
+    <form action="" method="POST" class="form-group"> {% csrf_token %}
+
+        <table class="table">
+    
+        {{miComment.as_table}}
+    
+        </table>
+
+        <input type="submit", value="Enviar comentario", class="btn btn-primary">
+
+        <p></p>
+
+    </form>
+
+</div>
+
+{% endblock main_content %}
+</html>

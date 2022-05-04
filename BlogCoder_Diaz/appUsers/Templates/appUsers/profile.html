@@ -1,0 +1,72 @@
+{% extends 'appBlog/base.html' %}
+
+{% block title %} Mi perfil {% endblock title %}
+
+{% block main_content %}
+
+
+<div class="container-fluid mb-5">
+    <p></p>
+    <div class="container-fluid mb-5">
+        <div class="row">
+            <div class="container-fluid mb-5">
+                <div class="row">
+                    <div class="row">    
+                        {% if request.user.is_superuser %}
+                        <div class="cl-sm-2">
+                            <div class="user-image-container mb-2">
+                                <img height="200" width="200" class="rounded-circle" src="{{imgprofile}}">
+                                <div style="text-align: left;">
+                                    <a class="btn btn-link btn-sm" href="{% url 'addAvatar' %}">Actualizar imagen</a>
+                                </div>
+                            </div>
+                        {% endif %}
+                        </div>
+                        <div class="col-sm-8 d-flex align-items-center"> 
+                            <div class="about-me">                    
+                                <div class="d-flex justify-content-start align-items-center"> 
+
+                                    {%if user.first_name and user.last_name%}
+                                    <h2><strong>{{user.first_name}} {{user.last_name}}</strong></h2>
+                                    {%else%}
+                                    <h2><strong>Nombre/s Apellido/s</strong></h2>
+                                    {%endif%}
+                                    <p></p>
+                                    <div style="text-align: left;">
+                                        {% if request.user.username == user.username %}
+                                        <a class="btn btn-xs" href="{% url 'EditarPerfil' %}">Editar</a>
+                                        {% endif %}
+                                    </div>
+                                </div>
+                                <div class="text-muted mb-3">{{user.username}} | {{user.email}}</div>
+                            </div>
+                        </div>
+
+                        <div id="description" class="container-fluid mb-5">
+                            <p>{{bio}}<p>
+                            <hr></hr>
+                            <table style="width: 18%;">
+
+                                {%if instagram%}
+                                <th><a href="{{instagram}}"><img id="img" class="img rounded-circle" alt="Instagram icon" height="32" width="32" src="https://cdn-icons.flaticon.com/png/512/3955/premium/3955024.png?token=exp=1651676128~hmac=5553f06e350dcaa8698ca987c15d7b42"></img></a></th>
+                                {%endif%}
+                                {%if facebook%}
+                                <th><a href="{{facebook}}"><img id="img" class="img rounded-circle" alt="Facebook icon" height="32" width="32" src="https://cdn-icons-png.flaticon.com/512/5968/5968764.png"></img></a></th>
+                                {%endif%}
+                                {%if twitter%}
+                                <th><a href="{{twitter}}"><img id="img" class="img rounded-circle" alt="Twitter icon" height="32" width="32" src="https://cdn-icons.flaticon.com/png/512/3670/premium/3670151.png?token=exp=1651676054~hmac=08187fd475129b4fedc8ebc2fc3361e3"></img></a></th>
+                                {%endif%}
+                                <th><a href="{% url 'Chat' user.username %}"><img id="img" class="img rounded-circle" alt="Chat icon" height="32" width="32" src="https://cdn-icons.flaticon.com/png/512/2538/premium/2538524.png?token=exp=1651676168~hmac=4e03ebf0a0180f9a3d0f5d9d5a34b7d9"></img></a></th>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div> 
+    </div>
+</div>
+
+
+
+{% endblock main_content %}
+    

@@ -1,0 +1,28 @@
+{% extends 'appBlog/base.html' %}
+
+{% block title %} Logout {% endblock title %}
+
+{% block main_content %}
+
+<header class="py-3 bg-light border-bottom mb-3" style="background-image: url(https://ecobnb.com/blog/app/uploads/sites/3/2016/06/w1_fireflies.jpg); background-position:0 0; background-repeat: no-repeat; background-size: cover;">
+
+    <div class="container">
+        <div class="text-center my-5">
+            <h1 class="fw-bolder style= text-white"> Esperamos que regreses pronto!</h1>
+        </div>
+    </div>
+</header>
+
+<div class="container">
+    <h1 class="text-center mt-4">Sesión finalizada</h1>
+    <p>
+        Su sesión se ha cerrado correctamente.
+    </p>
+    <p>
+        <a href="{% url 'inicio' %}">Volver al inicio</a>
+    </p>
+
+</div>
+
+
+{% endblock main_content %}

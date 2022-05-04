@@ -1,0 +1,73 @@
+{% extends 'appBlog/base.html' %}
+        {% load static %}
+
+
+    <body>
+
+        {% block title %}LEF | {{post.titulo}}{% endblock title %}
+        {% block main_content %}
+        <!-- Page content-->
+            <div class="container mt-5">
+                <div class="row">
+                    <div class="col-lg-8">
+                        <!-- Post content-->
+                        <article>
+                            <!-- Post header-->
+                            <header class="py-3 mb-3">
+                          
+                            <!-- Post title-->
+                                <h1 class="fw-bolder mb-1">{{post.titulo}}</h1>
+                                <h4 class="text-muted fst-italic mb-2">{{post.subtitulo}}</h4>
+                                <!-- Post meta content-->
+                                <div class="text-muted fst-italic mb-2">Publicado el {{post.fecha}} | <a href="{% url 'OpenProfile' post.owner %}">{{post.owner}} </a></div>
+
+                            </header>
+
+                            <figure class="mb-4"><img class="img-fluid rounded" src="{{post.imagen.url}}" alt="PostImg"></figure>
+                            <!-- Post content-->
+                            <section class="mb-5">
+                                <p class="fs-5 mb-4">{{post.cuerpo}}</p>
+                                
+                                <p class="text-muted fst-italic mb-3">{{post.autor}}</p>
+                            </section>
+
+                            <!-- Comment section-->
+                            <a class="btn btn-primary" href="{% url 'New Comment' post.titulo %}">Dejar comentario!</a>
+
+                            {%if request.user == post.owner or request.user.is_superuser%}
+                                <a class="btn btn-link" href="{% url 'DeletePost' post.titulo %}">Eliminar Post</a>
+                                <a class="btn btn-link" href="{% url 'UpdatePost' post.titulo %}">Editar Post</a>
+                            {%endif%}
+
+                            <p></p>
+
+                        </article>
+
+                        {% for comment in comentarios %}
+
+                                <section class="mb-5">
+                                    <div class="card bg-light">
+                                        <div class="card-body">
+                                            <!-- Comment with nested comments-->
+                                            <div class="d-flex mb-4">
+                                                <div class="ms-4">
+                                                    <div class="fw-bold mb-2">{{comment.usuario}} | {{comment.fecha}}</div>
+                                                        <p1 class="text-muted fst-italic mb-3">{{comment.body}}</p1>
+                                                    
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </section>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+
+
+
+        {% endblock main_content %}
+
+
+    </body>
+</html>

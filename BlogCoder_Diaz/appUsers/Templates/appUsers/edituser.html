@@ -1,0 +1,40 @@
+{% extends 'appBlog/base.html' %}
+
+{% block title %} Mi perfil {% endblock title %}
+
+{% block main_content %}
+
+{% include 'appBlog/Components/header.html' %}
+
+<div class="container mt-5">
+
+    <h4 class="text-muted">Modifica los campos que desees! Todo lo que dejes en blanco será información inexistente!!</h4>
+    <h5 class="text-muted">El cambio de contraseña es opcional</h5>
+    <hr></hr>
+
+        <form  method="post" class="form-group mb-5" style="text-align: justify">
+
+            {% csrf_token %}
+
+            <table class="table">
+
+            {{edituserform.as_p}}
+            {{aboutuserform.as_p}}
+
+            </table>
+
+            {% if request.user.is_superuser %}
+            <a class="btn btn-link" href="{% url 'addAvatar' %}">Cargar imagen</a>
+            {% endif %}
+
+            <p></p>
+            <input type="submit" value="Guardar cambios" class="btn btn-primary">
+            <a class="btn btn-primary" href="{% url 'inicio' %}">Cancelar</a>
+
+        </form>
+</div>
+
+
+
+{% endblock main_content %}
+    

@@ -1,0 +1,55 @@
+{% extends 'appBlog/base.html' %}
+{% load static %}
+
+{% block title %}LEF | Resultados{% endblock title %}
+
+{% block main_content %}
+    
+    
+
+<p></p>
+
+    {% if error %}
+    
+    <p style="color: rgb(116, 115, 115); text-align: center;" t>{{error}}</p>
+        <a href="Regresar al listado de posts disponibles" class="btn btn-link"></a>
+    
+    {% endif %}
+
+    {% if post %}
+    <div class="container">
+        <div class="row">
+            <!-- Blog entries-->
+            <div class="col-lg-8">
+                <!-- Featured blog post-->
+                <div class="card mb-4">
+                    <a href="{% url 'post' post.titulo %}"><img class="card-img-top" src="https://blog.foster.uw.edu/wp-content/uploads/2020/11/Mt.-Rainier.jpg" alt="..." /></a>
+                    <div class="card-body">
+                        <div class="small text-muted">{{post.fecha}}</div>
+                        <h2 class="card-title">{{post.titulo}}</h2>
+                        <p class="card-text">{{post.autor}}</p>
+                        <a class="btn btn-primary" href="{% url 'post' post.titulo %}">Leer →</a>
+                    </div>
+                </div>
+            </div>
+    {% endif %}
+
+
+        </div>
+    </div>
+
+{% endblock main_content %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
