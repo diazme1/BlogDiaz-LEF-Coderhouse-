@@ -193,33 +193,45 @@ def open_profile(request):
 
     avatar = Avatar.objects.filter(user=request.user)
 
-    aboutuser = UserAbout.objects.filter(user=request.user)
-
     if len(avatar) > 0:
 
-        img = avatar[0].imagen.url
-
-        if len(aboutuser) > 0:
-            bio = aboutuser[0].bio
-            instagram = aboutuser[0].instagram
-            facebook = aboutuser[0].facebook
-            twitter = aboutuser[0].twitter
-
-        else:
-    
-            bio = 'Información no disponible aún.'
-            instagram = None
-            facebook = None
-            twitter = None
+        imgprofile = avatar[0].imagen.url
 
     else:
 
-        img = None
+        imgprofile = None
 
+    aboutuser = UserAbout.objects.filter(user=request.user)
+
+    if len(aboutuser) > 0:
+        
+        bio = aboutuser[0].bio
+        instagram = aboutuser[0].instagram
+        facebook = aboutuser[0].facebook
+        twitter = aboutuser[0].twitter
+
+    else:
+    
         bio = 'Información no disponible aún.'
         instagram = None
         facebook = None
         twitter = None
+
+    if request.user.username:
+
+        avatar1 = Avatar.objects.filter(user=request.user)
+
+        if len(avatar1) > 0:
+
+            img = avatar1[0].imagen.url
+
+        else:
+
+            img = None
+    
+    else:
+
+        img = None
 
     return render(request, 'appUsers/profile.html', {'user':user, 'imgprofile':img, 'img': img, 'bio':bio, 'instagram':instagram, 'facebook':facebook, 'twitter':twitter})
 
@@ -231,29 +243,25 @@ def open_user_profile(request, usuario):
 
     avatar = Avatar.objects.filter(user=usuario1)
 
-    aboutuser = UserAbout.objects.filter(user=usuario1)
-
     if len(avatar) > 0:
 
         imgprofile = avatar[0].imagen.url
-
-        if len(aboutuser) > 0:
-            bio = aboutuser[0].bio
-            instagram = aboutuser[0].instagram
-            facebook = aboutuser[0].facebook
-            twitter = aboutuser[0].twitter
-
-        else:
-    
-            bio = 'Información no disponible aún.'
-            instagram = None
-            facebook = None
-            twitter = None
 
     else:
 
         imgprofile = None
 
+    aboutuser = UserAbout.objects.filter(user=usuario1)
+
+    if len(aboutuser) > 0:
+
+        bio = aboutuser[0].bio
+        instagram = aboutuser[0].instagram
+        facebook = aboutuser[0].facebook
+        twitter = aboutuser[0].twitter
+
+    else:
+    
         bio = 'Información no disponible aún.'
         instagram = None
         facebook = None

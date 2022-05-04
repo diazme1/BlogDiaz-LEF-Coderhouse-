@@ -23,7 +23,9 @@
 
                             </header>
 
+                            {%if post.imagen %}
                             <figure class="mb-4"><img class="img-fluid rounded" src="{{post.imagen.url}}" alt="PostImg"></figure>
+                            {%endif%}
                             <!-- Post content-->
                             <section class="mb-5">
                                 <p class="fs-5 mb-4">{{post.cuerpo}}</p>

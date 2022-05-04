@@ -23,7 +23,9 @@
             <div class="col-lg-8">
                 <!-- Featured blog post-->
                 <div class="card mb-4">
-                    <a href="{% url 'post' post.titulo %}"><img class="card-img-top" src="https://blog.foster.uw.edu/wp-content/uploads/2020/11/Mt.-Rainier.jpg" alt="..." /></a>
+                    {%if post.imagen%}
+                    <a href="{% url 'post' post.titulo %}"><img class="card-img-top" src="{{post.imagen}}" alt="..." /></a>
+                    {%endif%}
                     <div class="card-body">
                         <div class="small text-muted">{{post.fecha}}</div>
                         <h2 class="card-title">{{post.titulo}}</h2>

@@ -27,7 +27,9 @@
                                 <div class="col-lg-8">
                                     <!-- Featured blog post-->
                                     <div class="card mb-4">
+                                        {%  if post.imagen %}
                                         <a href="{% url 'post' post.titulo %}"><img class="card-img-top" src="{{post.imagen.url}}" alt="..." /></a>
+                                        {% endif %}
                                         <div class="card-body">
                                             <div class="small text-muted">{{post.fecha}}</div>
                                             <h2 class="card-title">{{post.titulo}}</h2>

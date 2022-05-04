@@ -61,7 +61,7 @@ def pages(request):
 
         usuario = None
 
-    return render(request, 'appBlog/pages.html', {'postlist':postslist, 'img':img})
+    return render(request, 'appBlog/pages.html', {'postlist':postslist, 'img':img, 'user':usuario})
 
 def abrir_post(request, titulo):
 
@@ -149,6 +149,16 @@ def makepost(request):
 @login_required
 def leavecomment(request, titulo):
 
+    avatar = Avatar.objects.filter(user=request.user)
+
+    if len(avatar) > 0:
+
+        img = avatar[0].imagen.url
+
+    else:
+
+        img = None
+
     if request.method =='POST':
 
         miComment = LeaveComment_form(request.POST)
@@ -167,12 +177,6 @@ def leavecomment(request, titulo):
 
             postslist = Post.objects.all().order_by('-fecha')
 
-            avatar = Avatar.objects.filter(user=request.user)
-
-            if len(avatar) > 0:
-
-                img = avatar[0].imagen.url
-
             return render(request, 'appBlog/pages.html', {'postlist': postslist, 'img': img})
     
     else:
@@ -182,12 +186,6 @@ def leavecomment(request, titulo):
         post = post[0].titulo
 
         miComment = LeaveComment_form(initial={'usuario':request.user, 'post':post})
-
-        avatar = Avatar.objects.filter(user=request.user)
-
-        if len(avatar) > 0:
-
-            img = avatar[0].imagen.url
 
     return render(request, 'appBlog/leavecomment.html', {'miComment': miComment, 'img': img})
 
@@ -224,49 +222,33 @@ def search_post(request):
 @login_required
 def deletepost(request, post_titulo):
 
-    
+    avatar = Avatar.objects.filter(user=request.user)
+
+    if len(avatar) > 0:
+
+        img = avatar[0].imagen.url
+
+    else:
+
+        img = None
 
     try:
         post = Post.objects.get(titulo=post_titulo)
         post.delete()
+
     except:
 
-        if request.method =='POST':
+        postslist = Post.objects.all().order_by('-fecha')
 
-            miPost = MakePost_form(request.POST)
-
-
-            if miPost.is_valid():
-
-                content = miPost.cleaned_data
-
-                post = Post(autor=content['autor'], email=content['email'], titulo=content['titulo'], cuerpo=content['cuerpo'])
-
-                post.save()
-
-                postslist = Post.objects.all().order_by('-fecha')
-
-                avatar = Avatar.objects.filter(user=request.user)
-
-                if len(avatar) > 0:
-
-                    img = avatar[0].imagen.url
-
-                return render(request, 'appBlog/index.html', {'postlist': postslist, 'img': img})
+        return render(request, 'appBlog/index.html', {'postlist': postslist, 'img': img})
     
     else:
 
-            miPost = MakePost_form()
+        miPost = MakePost_form()
 
-            postslist = Post.objects.all().order_by('-fecha')
+        postslist = Post.objects.all().order_by('-fecha')
 
-            avatar = Avatar.objects.filter(user=request.user)
-
-            if len(avatar) > 0:
-
-                img = avatar[0].imagen.url
-
-    return render(request, 'appBlog/index.html', {'postlist': postslist, 'miPost': miPost, 'img': img})
+        return render(request, 'appBlog/index.html', {'postlist': postslist, 'miPost': miPost, 'img': img})
 
 @login_required
 def updatepost(request, post_titulo):

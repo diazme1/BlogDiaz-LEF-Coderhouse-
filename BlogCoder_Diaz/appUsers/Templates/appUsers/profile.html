@@ -15,7 +15,6 @@
                         {% if request.user.is_superuser %}
                         <div class="cl-sm-2">
                             <div class="user-image-container mb-2">
-                                <img height="200" width="200" class="rounded-circle" src="{{imgprofile}}">
                                 <div style="text-align: left;">
                                     <a class="btn btn-link btn-sm" href="{% url 'addAvatar' %}">Actualizar imagen</a>
                                 </div>
