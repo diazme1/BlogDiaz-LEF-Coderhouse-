@@ -1,5 +1,7 @@
 {% extends 'appBlog/base.html' %}
 
+{% load static %}
+
 {% block title %} Mi perfil {% endblock title %}
 
 {% block main_content %}
@@ -47,15 +49,15 @@
                             <table style="width: 18%;">
 
                                 {%if instagram%}
-                                <th><a href="{{instagram}}"><img id="img" class="img rounded-circle" alt="Instagram icon" height="32" width="32" src="https://cdn-icons.flaticon.com/png/512/3955/premium/3955024.png?token=exp=1651676128~hmac=5553f06e350dcaa8698ca987c15d7b42"></img></a></th>
+                                <th><a href="{{instagram}}"><img id="img" class="img rounded-circle" alt="Instagram icon" height="32" width="32" src="{% static 'appUsers/assets/instagram.ico' %}"></img></a></th>
                                 {%endif%}
                                 {%if facebook%}
-                                <th><a href="{{facebook}}"><img id="img" class="img rounded-circle" alt="Facebook icon" height="32" width="32" src="https://cdn-icons-png.flaticon.com/512/5968/5968764.png"></img></a></th>
+                                <th><a href="{{facebook}}"><img id="img" class="img rounded-circle" alt="Facebook icon" height="32" width="32" src="{% static 'appUsers/assets/facebook.ico' %}"></img></a></th>
                                 {%endif%}
                                 {%if twitter%}
-                                <th><a href="{{twitter}}"><img id="img" class="img rounded-circle" alt="Twitter icon" height="32" width="32" src="https://cdn-icons.flaticon.com/png/512/3670/premium/3670151.png?token=exp=1651676054~hmac=08187fd475129b4fedc8ebc2fc3361e3"></img></a></th>
+                                <th><a href="{{twitter}}"><img id="img" class="img rounded-circle" alt="Twitter icon" height="32" width="32" src="{% static 'appUsers/assets/twitter.ico' %}"></img></a></th>
                                 {%endif%}
-                                <th><a href="{% url 'Chat' user.username %}"><img id="img" class="img rounded-circle" alt="Chat icon" height="32" width="32" src="https://cdn-icons.flaticon.com/png/512/2538/premium/2538524.png?token=exp=1651676168~hmac=4e03ebf0a0180f9a3d0f5d9d5a34b7d9"></img></a></th>
+                                <th><a href="{% url 'Chat' user.username %}"><img id="img" class="img rounded-circle" alt="Chat icon" height="32" width="32" src="{% static 'appUsers/assets/chat.ico' %}"></img></a></th>
                             </table>
                         </div>
                     </div>

@@ -48,7 +48,7 @@
                         {%else%}
                         
                         <li class="nav-item"><a class="nav-link active" aria-current="page" href="{% url 'Logout' %}">
-                            <img id="img" class="img" style="border-radius: 8px;" alt="Logout" height="23" width="23" src="https://cdn-user-icons.flaticon.com/70092/70092410/1651675477151.svg?token=exp=1651676378~hmac=d0ec0a37ac286d7edbc6e37ef7351477"></img>
+                            <img id="img" class="img" style="border-radius: 8px;" alt="Logout" height="23" width="23" src="{% static 'appBlog/assets/logout.ico' %}"></img>
                         </a></li>    
 
                         {% endif %}
